@@ -1,65 +1,77 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import PortsDropdownMenu from '../../src/components/PortsDropdownMenu';
-import { Port } from '../../src/interfaces/IPort';
+import React from "react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import PortsDropdownMenu from "../../src/components/PortsDropdownMenu";
+import { Port } from "../../src/interfaces/IPort";
 
 const mockPorts: Port[] = [
-  { portID: 1, name: 'Bergen', location: 'Bergen' },
-  { portID: 2, name: 'Trondheim', location: 'Trondheim' },
-  { portID: 3, name: 'Ålesund', location: 'Ålesund' },
+  { portID: 1, name: "Bergen", location: "Bergen" },
+  { portID: 2, name: "Trondheim", location: "Trondheim" },
+  { portID: 3, name: "Ålesund", location: "Ålesund" },
 ];
 
-describe('PortsDropdownMenu', () => {
+describe("PortsDropdownMenu", () => {
   const mockSelectPort = jest.fn();
+
+  beforeAll(() => {
+    jest.spyOn(console, "error").mockImplementation(() => {});
+  });
 
   beforeEach(() => {
     jest.resetAllMocks();
     sessionStorage.clear();
     global.fetch = jest.fn(() =>
-      Promise.resolve({ json: () => Promise.resolve(mockPorts) }),
+      Promise.resolve({ json: () => Promise.resolve(mockPorts) })
     ) as unknown as typeof fetch;
   });
 
-  test('renders and loads ports', async () => {
-    render(<PortsDropdownMenu onSelectPort={mockSelectPort} parent="departure" />);
+  test("renders and loads ports", async () => {
+    render(
+      <PortsDropdownMenu onSelectPort={mockSelectPort} parent="departure" />
+    );
 
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(screen.getByRole("button"));
 
     await waitFor(() => {
-      expect(screen.getByText('Bergen')).toBeInTheDocument();
-      expect(screen.getByText('Trondheim')).toBeInTheDocument();
-      expect(screen.getByText('Ålesund')).toBeInTheDocument();
+      expect(screen.getByText("Bergen")).toBeInTheDocument();
+      expect(screen.getByText("Trondheim")).toBeInTheDocument();
+      expect(screen.getByText("Ålesund")).toBeInTheDocument();
     });
   });
 
-  test('calls onSelectPort with selected port name', async () => {
-    render(<PortsDropdownMenu onSelectPort={mockSelectPort} parent="departure" />);
+  test("calls onSelectPort with selected port name", async () => {
+    render(
+      <PortsDropdownMenu onSelectPort={mockSelectPort} parent="departure" />
+    );
 
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(screen.getByRole("button"));
 
-    await waitFor(() => screen.getByText('Trondheim'));
-    fireEvent.click(screen.getByText('Trondheim'));
+    await waitFor(() => screen.getByText("Trondheim"));
+    fireEvent.click(screen.getByText("Trondheim"));
 
-    expect(mockSelectPort).toHaveBeenCalledWith('Trondheim');
+    expect(mockSelectPort).toHaveBeenCalledWith("Trondheim");
   });
 
-  test('disables departure port on destination parent', async () => {
-    sessionStorage.setItem('departurePort', 'Bergen');
-    render(<PortsDropdownMenu onSelectPort={mockSelectPort} parent="destination" />);
+  test("disables departure port on destination parent", async () => {
+    sessionStorage.setItem("departurePort", "Bergen");
+    render(
+      <PortsDropdownMenu onSelectPort={mockSelectPort} parent="destination" />
+    );
 
-    fireEvent.click(screen.getByRole('button'));
-    await waitFor(() => screen.getByText('Bergen'));
+    fireEvent.click(screen.getByRole("button"));
+    await waitFor(() => screen.getByText("Bergen"));
 
-    const disabledButton = screen.getByText('Bergen');
-    expect(disabledButton).toHaveStyle('pointer-events: none');
-    expect(disabledButton).toHaveStyle('opacity: 0.5');
+    const disabledButton = screen.getByText("Bergen");
+    expect(disabledButton).toHaveStyle("pointer-events: none");
+    expect(disabledButton).toHaveStyle("opacity: 0.5");
   });
 
-  test('shows error message on fetch failure', async () => {
-    (fetch as jest.Mock).mockRejectedValueOnce(new Error('API failed'));
+  test("shows error message on fetch failure", async () => {
+    (fetch as jest.Mock).mockRejectedValueOnce(new Error("API failed"));
 
-    render(<PortsDropdownMenu onSelectPort={mockSelectPort} parent="departure" />);
-    fireEvent.click(screen.getByRole('button'));
+    render(
+      <PortsDropdownMenu onSelectPort={mockSelectPort} parent="departure" />
+    );
+    fireEvent.click(screen.getByRole("button"));
 
     await waitFor(() => {
       expect(screen.getByText(/error fetching ports/i)).toBeInTheDocument();
