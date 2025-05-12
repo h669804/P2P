@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/components/progressbar.css";
+import "../css/components/ProgressBar.css";
 
 // ─────────────────────────────────────────────
 // File: ProgressBar.tsx
