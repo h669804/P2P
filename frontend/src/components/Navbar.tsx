@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import authService, { User } from '../contexts/AuthService';
-import '../css/components/Navbar.css';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import authService, { User } from "../contexts/AuthService";
+import "../css/components/Navbar.css";
 
 // ─────────────────────────────────────────────
 // File: Navbar.tsx
@@ -41,21 +41,21 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <nav className="navbar">
       <div className="navbar-logo">
         <Link to="/">
-          <img src="/src/assets/logo.svg" alt="Havila Voyages Logo" />
+          <img src="/assets/logo.svg" alt="Havila Voyages Logo" />
         </Link>
       </div>
 
       {/* Hamburger Icon */}
       <button
-        className={`navbar-hamburger ${isOpen ? 'open' : ''}`}
+        className={`navbar-hamburger ${isOpen ? "open" : ""}`}
         onClick={toggleMenu}
         data-testid="hamburger"
       >
@@ -65,10 +65,10 @@ export default function Navbar() {
       </button>
 
       {/* Dropdown Menu */}
-      <div className={`navbar-menu ${isOpen ? 'open' : ''}`}>
+      <div className={`navbar-menu ${isOpen ? "open" : ""}`}>
         {/* Update the Profile link to go directly to the profile page */}
         <Link to="/profile" className="navbar-link">
-          {user == null ? 'Profile' : user.firstName}
+          {user == null ? "Profile" : user.firstName}
         </Link>
         <Link to="/reservations" className="navbar-link">
           Reservations

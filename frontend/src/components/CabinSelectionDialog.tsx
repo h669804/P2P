@@ -122,7 +122,7 @@ export default function CabinSelectionDialog({
                     >
                       <h3 className="route-title">{category.name}</h3>
                       <span className="info-icon">
-                        <img src="./src/assets/info.svg" alt="Info" />
+                        <img src="/assets/info.svg" alt="Info" />
                       </span>
                     </button>
                     <div className="cabin-image">

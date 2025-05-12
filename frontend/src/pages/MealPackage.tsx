@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import BackButton from '../components/BackButton';
-import Navbar from '../components/Navbar';
-import ProgressBar from '../components/ProgressBar';
-import '../css/pages/MealPackage.css';
-import { useNavigate } from 'react-router-dom';
-import ReusableDialog from '../components/ReusableDialog';
+import { useState } from "react";
+import BackButton from "../components/BackButton";
+import Navbar from "../components/Navbar";
+import ProgressBar from "../components/ProgressBar";
+import "../css/pages/MealPackage.css";
+import { useNavigate } from "react-router-dom";
+import ReusableDialog from "../components/ReusableDialog";
 
 // ─────────────────────────────────────────────
 // File: MealPackage.tsx
@@ -18,13 +18,13 @@ export default function MealPackage() {
   const [isInfoOpen, setIsInfoOpen] = useState(false);
 
   const handleAccept = () => {
-    sessionStorage.setItem('mealPackage', 'true');
-    navigate('/passengerdetails');
+    sessionStorage.setItem("mealPackage", "true");
+    navigate("/passengerdetails");
   };
 
   const handleReject = () => {
-    sessionStorage.setItem('mealPackage', 'false');
-    navigate('/passengerdetails');
+    sessionStorage.setItem("mealPackage", "false");
+    navigate("/passengerdetails");
   };
 
   return (
@@ -39,10 +39,13 @@ export default function MealPackage() {
         </div>
         <div className="meal-wrapper">
           <div className="meal-package">
-            <button className="meal-package-message" onClick={() => setIsInfoOpen(true)}>
+            <button
+              className="meal-package-message"
+              onClick={() => setIsInfoOpen(true)}
+            >
               <span>Meal Package</span>
               <span className="info-icon">
-                <img src="./src/assets/info.svg" alt="Info" />
+                <img src="/assets/info.svg" alt="Info" />
               </span>
             </button>
             <div className="meal-package-price">
@@ -57,10 +60,14 @@ export default function MealPackage() {
             <div className="meal-info-dialog-content">
               <h3>Meal Package</h3>
               <p>
-                Includes breakfast, lunch and dinner during your voyage. Meals are served in the
-                main dining area and offer locally inspired, seasonal dishes.
+                Includes breakfast, lunch and dinner during your voyage. Meals
+                are served in the main dining area and offer locally inspired,
+                seasonal dishes.
               </p>
-              <button onClick={() => setIsInfoOpen(false)} className="close-button">
+              <button
+                onClick={() => setIsInfoOpen(false)}
+                className="close-button"
+              >
                 Close
               </button>
             </div>
