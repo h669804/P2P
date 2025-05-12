@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "../css/components/DropdownMenu.css";
 import { Port } from "../interfaces/IPort";
+import { baseUrl } from "../config/env";
 
 // ─────────────────────────────────────────────
 // File: PortsDropdownMenu.tsx
@@ -25,7 +26,6 @@ export default function DropdownMenu({
   const [ports, setPorts] = useState<Port[]>([]); // Store fetched ports
   const [errorMessage, setErrorMessage] = useState("Loading ports..");
   const [disabledPort, setDisabledPort] = useState<string | null>(null); // Her lagrer vi den deaktiverte havnen
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   // Fetch ports from API
   useEffect(() => {

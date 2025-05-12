@@ -1,3 +1,4 @@
+import { baseUrl } from "../config/env";
 export interface User {
   userID: number;
   firstName: string;
@@ -11,12 +12,10 @@ export interface LoginResponse {
   token: string;
 }
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 class AuthService {
   // Login user and store token
   async login(email: string, password: string): Promise<User> {
-    const response = await fetch(`${BASE_URL}/api/Users/login`, {
+    const response = await fetch(`${baseUrl}/api/Users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,7 +80,7 @@ class AuthService {
 
   // Get user profile from API
   async getProfile(): Promise<User> {
-    const response = await fetch(`${BASE_URL}/Users/profile`, {
+    const response = await fetch(`${baseUrl}/Users/profile`, {
       method: "GET",
       headers: {
         ...this.getAuthHeader(),

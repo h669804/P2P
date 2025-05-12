@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ReusableDialog from "./ReusableDialog";
+import { baseUrl } from "../config/env";
 
 // ─────────────────────────────────────────────
 // File: CabinSelectionDialog.tsx
@@ -41,7 +42,6 @@ export default function CabinSelectionDialog({
   );
   const [openPanel, setOpenPanel] = useState<string | null>(null);
   const [closingPanel, setClosingPanel] = useState<string | null>(null);
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     fetch(`${baseUrl}/api/cabins`)

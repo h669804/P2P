@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { baseUrl } from "../config/env";
 import ReusableDialog from "./ReusableDialog";
 import "../css/components/RouteSelection.css";
 import "../css/components/ApplyCancelButtons.css";
@@ -84,7 +85,6 @@ export default function RouteSelectionDialog({
         const departurePort = sessionStorage.getItem("departurePort");
         const destinationPort = sessionStorage.getItem("destinationPort");
         const selectedDate = sessionStorage.getItem("selectedDate");
-        const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
         // Validate required parameters
         if (!departurePort || !destinationPort || !selectedDate) {

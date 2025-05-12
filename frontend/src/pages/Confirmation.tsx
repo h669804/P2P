@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import "../css/pages/Confirmation.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../config/env";
 
 // ─────────────────────────────────────────────
 // File: Confirmation.tsx
@@ -36,7 +37,6 @@ Object.entries(options);
 export default function Confirmation() {
   const [responses, setResponses] = useState<number[]>(Array(10).fill(0));
   const [submitted, setSubmitted] = useState(false);
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
 
   const handleChange = (index: number, value: number) => {
