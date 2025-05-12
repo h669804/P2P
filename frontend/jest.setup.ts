@@ -1,20 +1,27 @@
-import '@testing-library/jest-dom';
-import { TextEncoder, TextDecoder } from 'util';
+import "@testing-library/jest-dom";
+import { TextEncoder, TextDecoder } from "util";
 
 Object.assign(global, {
   TextEncoder,
   TextDecoder,
 });
 
-Object.defineProperty(HTMLDialogElement.prototype, 'showModal', {
+Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
   value: function () {
     this.open = true;
   },
 });
 
-Object.defineProperty(HTMLDialogElement.prototype, 'close', {
+Object.defineProperty(HTMLDialogElement.prototype, "close", {
   value: function () {
     this.open = false;
-    this.dispatchEvent(new Event('close'));
+    this.dispatchEvent(new Event("close"));
   },
+});
+
+Object.defineProperty(import.meta, "env", {
+  value: {
+    VITE_API_BASE_URL: "http://localhost/mock",
+  },
+  writable: true,
 });

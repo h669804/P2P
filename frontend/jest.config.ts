@@ -1,14 +1,14 @@
-import type { Config } from 'jest';
+import type { Config } from "jest";
 
 const config: Config = {
-  testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['./jest.setup.ts'],
-  testMatch: ['**/tests/**/*.test.ts?(x)'],
+  testEnvironment: "jsdom",
+  setupFiles: ["./jest.setup.ts"], // <- endret fra setupFilesAfterEnv
+  testMatch: ["**/tests/**/*.test.ts?(x)"],
   transform: {
-    '^.+\\.(ts|tsx)$': ['ts-jest', { tsconfig: 'tsconfig.jest.json' }],
+    "^.+\\.(ts|tsx)$": ["ts-jest", { tsconfig: "tsconfig.jest.json" }],
   },
   moduleNameMapper: {
-    '\\.(css|scss)$': 'identity-obj-proxy',
+    "\\.(css|scss)$": "identity-obj-proxy",
   },
 };
 
