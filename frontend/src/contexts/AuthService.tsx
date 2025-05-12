@@ -1,4 +1,5 @@
-import { baseUrl } from "../config/env-vite";
+import { baseUrl } from "@config/env";
+
 export interface User {
   userID: number;
   firstName: string;

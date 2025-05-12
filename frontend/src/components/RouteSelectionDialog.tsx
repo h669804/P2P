@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { baseUrl } from "../config/env-vite";
+import { baseUrl } from "@config/env";
 import ReusableDialog from "./ReusableDialog";
 import "../css/components/RouteSelection.css";
 import "../css/components/ApplyCancelButtons.css";

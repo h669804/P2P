@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../css/components/DropdownMenu.css";
 import { Port } from "../interfaces/IPort";
-import { baseUrl } from "../config/env-vite";
+import { baseUrl } from "@config/env";
 
 // ─────────────────────────────────────────────
 // File: PortsDropdownMenu.tsx
@@ -34,6 +34,7 @@ export default function DropdownMenu({
     if (storedPorts) {
       setPorts(JSON.parse(storedPorts));
     }
+    console.log("baseUrl: ", baseUrl);
     fetch(`${baseUrl}/api/Ports`)
       .then((response) => response.json())
       .then((data: Port[]) => {

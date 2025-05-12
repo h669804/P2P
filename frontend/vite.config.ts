@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "@/config/env": path.resolve(__dirname, "src/config/env-vite.ts"),
+      "@config/env": path.resolve(__dirname, "src/config/env-vite.ts"),
     },
   },
 });
