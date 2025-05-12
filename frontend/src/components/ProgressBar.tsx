@@ -143,7 +143,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ activeStep }) => {
               onClick={() => handleStepClick(index, isVerySmallScreen)}
             >
               <img
-                src={`./src/assets/progress-bar/${step.replace(/\s+/g, "")}${isCompleted ? "-completed" : ""}.svg`}
+                src={`assets/progress-bar/${step.replace(/\s+/g, "")}${isCompleted ? "-completed" : ""}.svg`}
                 className="progress-icon"
                 alt={step}
               />
