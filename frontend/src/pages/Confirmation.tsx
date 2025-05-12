@@ -1,7 +1,7 @@
-import Navbar from '../components/Navbar';
-import '../css/pages/Confirmation.css';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Navbar from "../components/Navbar";
+import "../css/pages/Confirmation.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // ─────────────────────────────────────────────
 // File: Confirmation.tsx
@@ -11,24 +11,24 @@ import { useNavigate } from 'react-router-dom';
 // ─────────────────────────────────────────────
 
 const susStatements = [
-  'I think that I would like to use this system frequently.',
-  'I found the system unnecessarily complex.',
-  'I thought the system was easy to use.',
-  'I think that I would need the support of a technical person to use this system.',
-  'I found the various functions in this system were well integrated.',
-  'I thought there was too much inconsistency in this system.',
-  'I would imagine that most people would learn to use this system very quickly.',
-  'I found the system very cumbersome to use.',
-  'I felt very confident using the system.',
-  'I needed to learn a lot of things before I could get going with this system.',
+  "I think that I would like to use this system frequently.",
+  "I found the system unnecessarily complex.",
+  "I thought the system was easy to use.",
+  "I think that I would need the support of a technical person to use this system.",
+  "I found the various functions in this system were well integrated.",
+  "I thought there was too much inconsistency in this system.",
+  "I would imagine that most people would learn to use this system very quickly.",
+  "I found the system very cumbersome to use.",
+  "I felt very confident using the system.",
+  "I needed to learn a lot of things before I could get going with this system.",
 ];
 
 const options = {
-  1: 'Strongly disagree',
-  2: 'Disagree',
-  3: 'Neutral',
-  4: 'Agree',
-  5: 'Strongly agree',
+  1: "Strongly disagree",
+  2: "Disagree",
+  3: "Neutral",
+  4: "Agree",
+  5: "Strongly agree",
 };
 
 Object.entries(options);
@@ -36,6 +36,7 @@ Object.entries(options);
 export default function Confirmation() {
   const [responses, setResponses] = useState<number[]>(Array(10).fill(0));
   const [submitted, setSubmitted] = useState(false);
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
 
   const handleChange = (index: number, value: number) => {
@@ -50,16 +51,16 @@ export default function Confirmation() {
     const payload = { responses };
 
     try {
-      const res = await fetch('http://localhost:5215/api/feedback/sus', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch(`${baseUrl}/api/feedback/sus`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        alert(`Submission failed: ${data.message || 'Unknown error'}`);
+        alert(`Submission failed: ${data.message || "Unknown error"}`);
         return;
       }
 
@@ -67,7 +68,7 @@ export default function Confirmation() {
       setSubmitted(true);
     } catch (err) {
       console.error(err);
-      alert('Something went wrong while submitting your feedback.');
+      alert("Something went wrong while submitting your feedback.");
     }
   };
 
@@ -101,7 +102,7 @@ export default function Confirmation() {
             </div>
           ))}
           {submitted ? (
-            <button type="button" onClick={() => navigate('/')}>
+            <button type="button" onClick={() => navigate("/")}>
               Back to home
             </button>
           ) : (

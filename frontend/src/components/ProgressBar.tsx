@@ -1,6 +1,6 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../css/components/progressbar.css';
+import React, { useState, useEffect, Fragment } from "react";
+import { useNavigate } from "react-router-dom";
+import "../css/components/progressbar.css";
 
 // ─────────────────────────────────────────────
 // File: ProgressBar.tsx
@@ -13,21 +13,21 @@ type ProgressBarProps = {
   activeStep: number;
 };
 const allSteps = [
-  'Departure',
-  'Destination',
-  'Passengers',
-  'Travel Date',
-  'Choose Route',
-  'Cabin',
-  'Meal Package',
-  'Passenger Details',
-  'Summary',
-  'Payment Option',
-  'Payment',
+  "Departure",
+  "Destination",
+  "Passengers",
+  "Travel Date",
+  "Choose Route",
+  "Cabin",
+  "Meal Package",
+  "Passenger Details",
+  "Summary",
+  "Payment Option",
+  "Payment",
 ];
 
 // Mobile condensed steps - key milestone steps to show on mobile
-const mobileSteps = ['Departure', 'Passengers', 'Cabin', 'Summary', 'Payment'];
+const mobileSteps = ["Departure", "Passengers", "Cabin", "Summary", "Payment"];
 
 // Helper function to map current step index to mobile step index
 const mapToMobileIndex = (currentIndex: number) => {
@@ -53,7 +53,9 @@ const mapToMobileIndex = (currentIndex: number) => {
 };
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ activeStep }) => {
-  const [isVerySmallScreen, setIsVerySmallScreen] = useState(window.innerWidth <= 600);
+  const [isVerySmallScreen, setIsVerySmallScreen] = useState(
+    window.innerWidth <= 600
+  );
   const [isShortScreen, setIsShortScreen] = useState(window.innerHeight <= 500);
   const navigate = useNavigate();
 
@@ -73,14 +75,20 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ activeStep }) => {
         navbarOffset = 16 + factor * 16;
       }
 
-      document.documentElement.style.setProperty('--navbar-height', `${navbarHeight}px`);
-      document.documentElement.style.setProperty('--navbar-offset', `${navbarOffset}px`);
+      document.documentElement.style.setProperty(
+        "--navbar-height",
+        `${navbarHeight}px`
+      );
+      document.documentElement.style.setProperty(
+        "--navbar-offset",
+        `${navbarOffset}px`
+      );
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize();
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleStepClick = (index: number, isMobile = false) => {
@@ -90,7 +98,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ activeStep }) => {
     // Only allow navigation to completed or current steps
     if (targetIndex <= activeStep) {
       // Convert step name to route (e.g., "Travel Date" → "/travel-date")
-      const route = `/${allSteps[targetIndex].replace(/\s+/g, '').toLowerCase()}`;
+      const route = `/${allSteps[targetIndex].replace(/\s+/g, "").toLowerCase()}`;
       navigate(route);
     }
   };
@@ -100,32 +108,33 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ activeStep }) => {
 
   // Determine which steps array to use based on screen size or layout
   // Always use mobile steps when in vertical layout
-  const stepsToRender = isVerySmallScreen || useVerticalLayout ? mobileSteps : allSteps;
+  const stepsToRender =
+    isVerySmallScreen || useVerticalLayout ? mobileSteps : allSteps;
 
   // Map the active step to the correct index in the condensed array if on mobile or vertical layout
   const displayActiveStep =
-    isVerySmallScreen || useVerticalLayout ? mapToMobileIndex(activeStep) : activeStep;
-
-  const isActive = isVerySmallScreen ? displayActiveStep : activeStep - 1;
-
-  const stepStatus = activeStep < isActive ? 'completed' : activeStep === isActive ? 'active' : '';
+    isVerySmallScreen || useVerticalLayout
+      ? mapToMobileIndex(activeStep)
+      : activeStep;
 
   return (
     <div
       className={`progress-container 
-                    ${isVerySmallScreen ? 'mobile-view' : ''} 
-                    ${useVerticalLayout ? 'vertical' : ''}`}
+                    ${isVerySmallScreen ? "mobile-view" : ""} 
+                    ${useVerticalLayout ? "vertical" : ""}`}
     >
       {stepsToRender.map((step, index) => {
         const stepInFullArray = allSteps.indexOf(step);
-        const isCompleted = isVerySmallScreen ? stepInFullArray < activeStep : index < activeStep;
+        const isCompleted = isVerySmallScreen
+          ? stepInFullArray < activeStep
+          : index < activeStep;
 
         const isActive = isVerySmallScreen
           ? stepInFullArray === activeStep ||
             (index === displayActiveStep && stepInFullArray > activeStep)
           : index === activeStep;
 
-        const stepStatus = isActive ? 'active' : isCompleted ? 'completed' : '';
+        const stepStatus = isActive ? "active" : isCompleted ? "completed" : "";
 
         return (
           <Fragment key={allSteps.indexOf(step)}>
@@ -134,7 +143,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ activeStep }) => {
               onClick={() => handleStepClick(index, isVerySmallScreen)}
             >
               <img
-                src={`./src/assets/progress-bar/${step.replace(/\s+/g, '')}${isCompleted ? '-completed' : ''}.svg`}
+                src={`./src/assets/progress-bar/${step.replace(/\s+/g, "")}${isCompleted ? "-completed" : ""}.svg`}
                 className="progress-icon"
                 alt={step}
               />

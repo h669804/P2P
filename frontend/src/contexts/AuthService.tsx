@@ -11,42 +11,44 @@ export interface LoginResponse {
   token: string;
 }
 
-const API_URL = 'http://localhost:5215/api';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 class AuthService {
   // Login user and store token
   async login(email: string, password: string): Promise<User> {
-    const response = await fetch(`${API_URL}/Users/login`, {
-      method: 'POST',
+    const response = await fetch(`${BASE_URL}/api/Users/login`, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
     });
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(typeof errorData === 'string' ? errorData : 'Login failed');
+      throw new Error(
+        typeof errorData === "string" ? errorData : "Login failed"
+      );
     }
 
     const data: LoginResponse = await response.json();
 
     // Store token and user in localStorage
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('user', JSON.stringify(data.user));
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
 
     return data.user;
   }
 
   // Logout user and clear storage
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
   }
 
   // Get current user from localStorage
   getCurrentUser(): User | null {
-    const userStr = localStorage.getItem('user');
+    const userStr = localStorage.getItem("user");
     if (!userStr) return null;
 
     try {
@@ -59,7 +61,7 @@ class AuthService {
 
   // Get auth token
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem("token");
   }
 
   // Check if user is logged in
@@ -79,11 +81,11 @@ class AuthService {
 
   // Get user profile from API
   async getProfile(): Promise<User> {
-    const response = await fetch(`${API_URL}/Users/profile`, {
-      method: 'GET',
+    const response = await fetch(`${BASE_URL}/Users/profile`, {
+      method: "GET",
       headers: {
         ...this.getAuthHeader(),
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
 
@@ -92,7 +94,7 @@ class AuthService {
       if (response.status === 401) {
         this.logout();
       }
-      throw new Error('Failed to get profile');
+      throw new Error("Failed to get profile");
     }
 
     return await response.json();

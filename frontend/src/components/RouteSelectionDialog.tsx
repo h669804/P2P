@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import ReusableDialog from './ReusableDialog';
-import '../css/components/RouteSelection.css';
-import '../css/components/ApplyCancelButtons.css';
+import { useState, useEffect } from "react";
+import ReusableDialog from "./ReusableDialog";
+import "../css/components/RouteSelection.css";
+import "../css/components/ApplyCancelButtons.css";
 
 // ─────────────────────────────────────────────
 // File: RouteSelectionDialog.tsx
@@ -37,9 +37,13 @@ interface VoyageRouteDto {
   stops: RouteStopDto[];
 }
 
-export default function RouteSelectionDialog({ onRouteSelected }: RouteSelectionDialogProps) {
+export default function RouteSelectionDialog({
+  onRouteSelected,
+}: RouteSelectionDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedRoute, setSelectedRoute] = useState<VoyageRouteDto | null>(null);
+  const [selectedRoute, setSelectedRoute] = useState<VoyageRouteDto | null>(
+    null
+  );
   const [routes, setRoutes] = useState<VoyageRouteDto[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -48,21 +52,25 @@ export default function RouteSelectionDialog({ onRouteSelected }: RouteSelection
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
     // Get day name shortened to 3 letters
-    const dayName = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(date);
+    const dayName = new Intl.DateTimeFormat("en-US", {
+      weekday: "short",
+    }).format(date);
     // Get day of month
     const day = date.getDate();
     // Get month name shortened to 3 letters
-    const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
+    const month = new Intl.DateTimeFormat("en-US", { month: "short" }).format(
+      date
+    );
     // Get hours and minutes
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
 
     return `${dayName} ${day} ${month} ${hours}:${minutes}`;
   };
 
   // Fetch routes data from API
   useEffect(() => {
-    const selectedRoute = sessionStorage.getItem('selectedRoute');
+    const selectedRoute = sessionStorage.getItem("selectedRoute");
     if (selectedRoute) {
       setSelectedRoute(JSON.parse(selectedRoute));
       onRouteSelected(true);
@@ -73,36 +81,45 @@ export default function RouteSelectionDialog({ onRouteSelected }: RouteSelection
         setError(null);
 
         // Retrieve stored navigation information
-        const departurePort = sessionStorage.getItem('departurePort');
-        const destinationPort = sessionStorage.getItem('destinationPort');
-        const selectedDate = sessionStorage.getItem('selectedDate');
+        const departurePort = sessionStorage.getItem("departurePort");
+        const destinationPort = sessionStorage.getItem("destinationPort");
+        const selectedDate = sessionStorage.getItem("selectedDate");
+        const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
         // Validate required parameters
         if (!departurePort || !destinationPort || !selectedDate) {
-          throw new Error('Missing travel information. Please complete previous steps.');
+          throw new Error(
+            "Missing travel information. Please complete previous steps."
+          );
         }
 
         // Build the URL with parameters
-        const url = `http://localhost:5215/api/Routes/search?departure=${encodeURIComponent(departurePort)}&arrival=${encodeURIComponent(destinationPort)}&date=${encodeURIComponent(selectedDate)}`;
+        const url = `${baseUrl}/api/Routes/search?departure=${encodeURIComponent(departurePort)}&arrival=${encodeURIComponent(destinationPort)}&date=${encodeURIComponent(selectedDate)}`;
 
         const response = await fetch(url, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         });
 
         if (!response.ok) {
           // Try to get error details
           const errorText = await response.text();
-          throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
+          throw new Error(
+            `HTTP error! Status: ${response.status}, Message: ${errorText}`
+          );
         }
 
         const data = await response.json();
 
         setRoutes(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load routes. Please try again.');
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Failed to load routes. Please try again."
+        );
       } finally {
         setIsLoading(false);
       }
@@ -119,13 +136,13 @@ export default function RouteSelectionDialog({ onRouteSelected }: RouteSelection
     if (selectedRoute) {
       onRouteSelected(true);
       // Store the selected route in sessionStorage
-      sessionStorage.setItem('selectedRoute', JSON.stringify(selectedRoute));
+      sessionStorage.setItem("selectedRoute", JSON.stringify(selectedRoute));
       setIsOpen(false);
     }
   };
 
   const getDisplayText = () => {
-    if (!selectedRoute) return 'View voyages';
+    if (!selectedRoute) return "View voyages";
     return `${formatDate(selectedRoute.departureTime)}`;
   };
 
@@ -136,13 +153,15 @@ export default function RouteSelectionDialog({ onRouteSelected }: RouteSelection
   } else if (error) {
     content = <div className="error-state">{error}</div>;
   } else if (routes.length === 0) {
-    content = <div className="no-routes">No routes found for this journey.</div>;
+    content = (
+      <div className="no-routes">No routes found for this journey.</div>
+    );
   } else {
     content = routes.map((route) => (
       <button
         key={route.id}
-        className={`route-option ${!route.isActive ? 'unavailable' : ''} ${
-          selectedRoute?.id === route.id ? 'selected' : ''
+        className={`route-option ${!route.isActive ? "unavailable" : ""} ${
+          selectedRoute?.id === route.id ? "selected" : ""
         }`}
         onClick={() => route.isActive && handleSelect(route)}
       >
@@ -156,11 +175,15 @@ export default function RouteSelectionDialog({ onRouteSelected }: RouteSelection
           <div className="route-times">
             <div className="time-item">
               <span className="time-label">Departure:</span>
-              <span className="time-value">{formatDate(route.departureTime)}</span>
+              <span className="time-value">
+                {formatDate(route.departureTime)}
+              </span>
             </div>
             <div className="time-item">
               <span className="time-label">Arrival:</span>
-              <span className="time-value">{formatDate(route.arrivalTime)}</span>
+              <span className="time-value">
+                {formatDate(route.arrivalTime)}
+              </span>
             </div>
           </div>
           <div className="route-price">NOK {Math.round(route.price)}</div>
@@ -171,7 +194,11 @@ export default function RouteSelectionDialog({ onRouteSelected }: RouteSelection
 
   return (
     <div className="custom-route-dialog">
-      <button className="custom-route-dialog-toggle" onClick={() => setIsOpen(true)} type="button">
+      <button
+        className="custom-route-dialog-toggle"
+        onClick={() => setIsOpen(true)}
+        type="button"
+      >
         <p>{getDisplayText()}</p>
       </button>
       <ReusableDialog
@@ -185,7 +212,11 @@ export default function RouteSelectionDialog({ onRouteSelected }: RouteSelection
             <button className="cancel" onClick={() => setIsOpen(false)}>
               Cancel
             </button>
-            <button className="apply" onClick={handleApply} disabled={!selectedRoute}>
+            <button
+              className="apply"
+              onClick={handleApply}
+              disabled={!selectedRoute}
+            >
               Apply
             </button>
           </div>

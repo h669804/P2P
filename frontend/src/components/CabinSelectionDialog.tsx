@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import ReusableDialog from './ReusableDialog';
+import { useEffect, useState } from "react";
+import ReusableDialog from "./ReusableDialog";
 
 // ─────────────────────────────────────────────
 // File: CabinSelectionDialog.tsx
@@ -9,7 +9,7 @@ import ReusableDialog from './ReusableDialog';
 // ─────────────────────────────────────────────
 
 interface CabinType {
-  type: 'Flex' | 'Saver';
+  type: "Flex" | "Saver";
   price: number;
 }
 
@@ -23,7 +23,7 @@ interface CabinCategory {
 
 interface SelectedCabin {
   category: string;
-  type: 'Flex' | 'Saver';
+  type: "Flex" | "Saver";
   price: number;
 }
 
@@ -31,20 +31,25 @@ interface CabinSelectionDialogProps {
   readonly onCabinSelected: (selected: boolean) => void;
 }
 
-export default function CabinSelectionDialog({ onCabinSelected }: CabinSelectionDialogProps) {
+export default function CabinSelectionDialog({
+  onCabinSelected,
+}: CabinSelectionDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [cabinCategories, setCabinCategories] = useState<CabinCategory[]>([]);
-  const [selectedCabin, setSelectedCabin] = useState<SelectedCabin | null>(null);
+  const [selectedCabin, setSelectedCabin] = useState<SelectedCabin | null>(
+    null
+  );
   const [openPanel, setOpenPanel] = useState<string | null>(null);
   const [closingPanel, setClosingPanel] = useState<string | null>(null);
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    fetch('http://localhost:5215/api/cabins')
+    fetch(`${baseUrl}/api/cabins`)
       .then((res) => res.json())
       .then((data) => setCabinCategories(data))
-      .catch((err) => console.error('Failed to fetch cabins:', err));
+      .catch((err) => console.error("Failed to fetch cabins:", err));
 
-    const storedCabin = sessionStorage.getItem('selectedCabin');
+    const storedCabin = sessionStorage.getItem("selectedCabin");
     if (storedCabin) {
       setSelectedCabin(JSON.parse(storedCabin));
       onCabinSelected(true);
@@ -53,14 +58,14 @@ export default function CabinSelectionDialog({ onCabinSelected }: CabinSelection
 
   const handleApply = () => {
     if (selectedCabin) {
-      sessionStorage.setItem('selectedCabin', JSON.stringify(selectedCabin));
+      sessionStorage.setItem("selectedCabin", JSON.stringify(selectedCabin));
       onCabinSelected(true);
       setIsOpen(false);
     }
   };
 
   const getDisplayText = () => {
-    if (!selectedCabin) return 'Select your cabin';
+    if (!selectedCabin) return "Select your cabin";
     return `${selectedCabin.category} — ${selectedCabin.type}`;
   };
 
@@ -74,7 +79,7 @@ export default function CabinSelectionDialog({ onCabinSelected }: CabinSelection
     };
 
     setSelectedCabin(combinedCabin);
-    sessionStorage.setItem('selectedCabin', JSON.stringify(combinedCabin));
+    sessionStorage.setItem("selectedCabin", JSON.stringify(combinedCabin));
     onCabinSelected(true);
   };
 
@@ -93,7 +98,11 @@ export default function CabinSelectionDialog({ onCabinSelected }: CabinSelection
 
   return (
     <div className="custom-cabin-dialog">
-      <button className="custom-cabin-dialog-toggle" onClick={() => setIsOpen(true)} type="button">
+      <button
+        className="custom-cabin-dialog-toggle"
+        onClick={() => setIsOpen(true)}
+        type="button"
+      >
         <p>{getDisplayText()}</p>
       </button>
       <ReusableDialog
@@ -117,7 +126,10 @@ export default function CabinSelectionDialog({ onCabinSelected }: CabinSelection
                       </span>
                     </button>
                     <div className="cabin-image">
-                      <img src={category.imagePath} alt={`${category.name} Cabin`} />
+                      <img
+                        src={category.imagePath}
+                        alt={`${category.name} Cabin`}
+                      />
                     </div>
                   </div>
                   <div className="cabin-options">
@@ -129,24 +141,27 @@ export default function CabinSelectionDialog({ onCabinSelected }: CabinSelection
                       return (
                         <button
                           key={`${category.name}-${cabin.type}`}
-                          className={`cabin-option ${isSelected ? 'cabin-option-selected' : ''}`}
-                          onClick={() => handleCabinSelect(category.name, cabin)}
+                          className={`cabin-option ${isSelected ? "cabin-option-selected" : ""}`}
+                          onClick={() =>
+                            handleCabinSelect(category.name, cabin)
+                          }
                         >
                           <div className="cabin-option-details">
                             <span>{cabin.type}</span>
                             <span>NOK {cabin.price}</span>
                           </div>
                           <div
-                            className={`cabin-selector ${isSelected ? 'cabin-selector-selected' : ''}`}
+                            className={`cabin-selector ${isSelected ? "cabin-selector-selected" : ""}`}
                           ></div>
                         </button>
                       );
                     })}
                   </div>
 
-                  {(openPanel === category.name || closingPanel === category.name) && (
+                  {(openPanel === category.name ||
+                    closingPanel === category.name) && (
                     <div
-                      className={`row-panel ${closingPanel === category.name ? 'closing' : 'opening'}`}
+                      className={`row-panel ${closingPanel === category.name ? "closing" : "opening"}`}
                     >
                       <div className="row-panel-header">
                         <h4>{category.name}</h4>
@@ -171,7 +186,11 @@ export default function CabinSelectionDialog({ onCabinSelected }: CabinSelection
             <button className="cancel" onClick={() => setIsOpen(false)}>
               Cancel
             </button>
-            <button className="apply" onClick={handleApply} disabled={!isCabinSelectionComplete}>
+            <button
+              className="apply"
+              onClick={handleApply}
+              disabled={!isCabinSelectionComplete}
+            >
               Apply
             </button>
           </div>
