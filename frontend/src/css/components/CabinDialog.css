@@ -1,0 +1,252 @@
+/* CabinDialog.css */
+.custom-cabin-dialog {
+  position: relative;
+  width: 20rem;
+  max-width: 100%;
+}
+
+.custom-cabin-dialog-toggle {
+  min-height: 3.2rem;
+  padding: 0 1.2rem;
+  font-size: max(1.6vw, 1.2rem);
+  font-weight: bold;
+  color: #6b7280;
+  background-color: #efeff2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  line-height: 1.2;
+}
+.custom-cabin-dialog-toggle p {
+  margin: 0;
+  font-size: clamp(1rem, 3vw, 2rem);
+}
+
+.custom-cabin-dialog-open {
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  border: none;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: white;
+  max-width: 90vw;
+}
+.cabin-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  background-color: white;
+}
+
+.cabin-option-wrapper {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cabin-category-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.7rem;
+  position: relative;
+}
+
+.cabin-image-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.row-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.row-panel.opening {
+  animation: slideIn 0.3s ease-in-out forwards;
+}
+
+.row-panel.closing {
+  animation: slideOut 0.3s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.row-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.row-panel-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.close-icon {
+  font-size: 1rem;
+  cursor: pointer;
+  color: #6b7280;
+  background-color: white;
+}
+
+.row-panel-content {
+  padding: 12px;
+  font-size: 0.9rem;
+  color: #6b7280;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Bilde */
+.cabin-image {
+  width: 100%;
+  height: 8.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cabin-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cabin-options {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.cabin-option-selected {
+  background-color: #d1e7ff;
+  border-color: #2563eb;
+  color: #1e3a8a;
+}
+
+/* Detaljer inne i hvert alternativ */
+.cabin-option-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.cabin-option-details span:first-child {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.cabin-option-details span:last-child {
+  color: #6b7280;
+  font-size: 1.2rem;
+}
+
+.cabin-selector {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #e5e7eb;
+  cursor: pointer;
+  background-color: white;
+}
+.cabin-selector-selected {
+  background-color: #3164d1;
+  border-color: #2563eb;
+}
+@media (max-width: 480px) {
+  .custom-cabin-dialog {
+    width: 14rem;
+    margin-top: 0.25rem;
+    margin-bottom: 4.75rem;
+  }
+  .cabin-option {
+    margin-bottom: 0.5rem;
+  }
+  .route-title {
+    font-size: 0.9rem;
+  }
+  .cabin-option-details span:first-child {
+    font-size: 0.8rem;
+  }
+  .cabin-option-details span:last-child {
+    font-size: 0.8rem;
+  }
+  .cabin-image {
+    height: 5.125rem;
+  }
+  .cabin-options {
+    gap: 0;
+  }
+}
+
+@media (max-height: 500px) and (max-width: 1024px) {
+  .custom-cabin-dialog-toggle p {
+    font-size: 1.2rem;
+  }
+  .cabin-option {
+    margin-bottom: 0.5rem;
+  }
+  .route-title {
+    font-size: 0.9rem;
+  }
+  .cabin-option-details span:first-child {
+    font-size: 0.8rem;
+  }
+  .cabin-option-details span:last-child {
+    font-size: 0.8rem;
+  }
+  .cabin-image {
+    height: 5.125rem;
+  }
+  .cabin-options {
+    gap: 0;
+  }
+}

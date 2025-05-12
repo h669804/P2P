@@ -1,0 +1,35 @@
+/* Counter.css */
+.counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.counter__controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.counter__btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background-color: #e5e5e5;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.counter__btn:active {
+  background-color: #d1d1d1;
+}
+
+.count {
+  font-size: 18px;
+  min-width: 24px;
+  text-align: center;
+}

@@ -1,0 +1,43 @@
+trigger:
+  - sonarqube
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - checkout: self
+    fetchDepth: 0
+
+  - task: SonarCloudPrepare@1
+    inputs:
+      SonarCloud: 'SonarCloudServiceConnection'
+      organization: '586541'
+      scannerMode: 'CLI'
+      configMode: 'manual'
+      projectKey: '586541_P2PWebApp'
+      projectName: 'P2PWebApp'
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      npm ci
+      npm run build     # Vite build
+      npm run test -- --coverage
+    displayName: 'Build with Vite and test with coverage'
+
+  - script: |
+      npx sonar-scanner \
+        -Dsonar.projectKey=586541_P2PWebApp \
+        -Dsonar.organization=586541 \
+        -Dsonar.sources=src \
+        -Dsonar.inclusions=**/*.ts,**/*.tsx,**/*.css \
+        -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/*.spec.ts \
+        -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+    displayName: 'Run SonarCloud analysis'
+
+  - task: SonarCloudPublish@1
+    inputs:
+      pollingTimeoutSec: '300'

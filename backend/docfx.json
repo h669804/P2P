@@ -1,0 +1,36 @@
+{
+    "metadata": [
+      {
+        "src": [
+          {
+            "files": ["appProject.csproj"],
+            "src": "."
+          }
+        ],
+        "dest": "obj/api"
+      }
+    ],
+    "build": {
+   "content": [
+  {
+    "files": [
+      "index.md",              
+      "articles/**/*.md",
+      "obj/api/**/*.yml"
+    ],
+    "src": "."
+  }
+],
+      "fileMetadata": {
+        "template": {
+          "obj/api/**/*.yml": "api"
+        }
+      },
+      "globalMetadata": {
+        "_appTitle": "Dokumentasjon for prosjektet"
+      },
+      "output": "_site",
+      "template": ["default"]
+    }
+  }
+  

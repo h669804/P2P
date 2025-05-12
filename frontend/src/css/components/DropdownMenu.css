@@ -1,0 +1,167 @@
+/* DropdownMenu.css */
+.custom-dropdown {
+  position: relative;
+  width: 20rem;
+  max-width: 100%;
+}
+
+.custom-dropdown-toggle {
+  height: 3.2rem;
+  padding: 0 1.2rem;
+  font-size: max(1.6vw, 1.2rem);
+  font-weight: bold;
+  color: #6b7280;
+  background-color: #efeff2;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.custom-dropdown-toggle p {
+  margin: 0;
+  line-height: inherit;
+}
+
+.custom-dropdown-toggle.open {
+  border-radius: 16px 16px 0 0;
+}
+
+.custom-dropdown-toggle:hover,
+.custom-dropdown-item:hover {
+  background-color: #d7d9de;
+}
+
+.custom-dropdown-menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin: 0; /* Kritisk: ingen margin-top */
+  padding: 0;
+  border-radius: 0 0 16px 16px;
+  overflow-y: auto;
+  background-color: #efeff2;
+  overscroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: calc(3 * 2.8rem); /* Viser maks 3 porter */
+}
+
+.custom-dropdown-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-dropdown-menu::-webkit-scrollbar-thumb {
+  background-color: #b0b3ba;
+  border-radius: 4px;
+}
+
+.custom-dropdown-menu::-webkit-scrollbar-track {
+  background: #efeff2;
+}
+
+.custom-dropdown-item {
+  background-color: #efeff2;
+  font-size: max(1.4vw, 1.2rem);
+  color: #6b7280;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* Dropdown arrow */
+.dropdown-arrow {
+  border-left: max(10px, 0.2rem) solid transparent;
+  border-right: max(10px, 0.2rem) solid transparent;
+  border-top: max(10px, 0.2rem) solid #6b7280;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+  .custom-dropdown {
+    width: 16rem;
+    max-width: 90%;
+  }
+
+  .custom-dropdown-toggle {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+
+  .custom-dropdown-toggle.open {
+    border-radius: 12px 12px 0 0;
+  }
+
+  .custom-dropdown-menu {
+    max-height: 12rem;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-dropdown-item {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .dropdown-arrow {
+    border-left: 0.25rem solid transparent;
+    border-right: 0.25rem solid transparent;
+    border-top: 0.25rem solid #6b7280;
+  }
+}
+
+/* Små mobiler */
+@media (max-width: 480px) {
+  .custom-dropdown {
+    width: 14rem;
+    margin-top: 0.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .custom-dropdown-toggle {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .custom-dropdown-menu {
+    max-height: 10rem;
+  }
+
+  .custom-dropdown-item {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.7rem;
+  }
+}
+
+/* Mobil i landskapsmodus */
+@media (max-height: 500px) and (max-width: 1024px) {
+  .custom-dropdown {
+    margin-top: 0;
+  }
+
+  .custom-dropdown-menu {
+    top: 100%;
+    margin: 0; /* <- viktig for flush */
+    max-height: calc(2rem * 3);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-dropdown-item {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.8rem;
+    height: 2.2rem;
+  }
+}

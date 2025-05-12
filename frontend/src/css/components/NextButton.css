@@ -1,0 +1,101 @@
+/* NextButton.css */
+.next-button {
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed;
+  background-color: #90ee90;
+  color: black;
+  font-weight: bold;
+  font-size: 2.5rem; /* Baseline font size */
+  padding: 0.5rem 6rem; /* Høyde fokusert */
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  min-width: 200px; /* Beholder bredden stabil */
+  max-width: 400px; /* Begrens maks bredde */
+}
+
+.next-button.active:hover {
+  background-color: #81d081;
+}
+
+.next-button:disabled {
+  background-color: #d3d3d3;
+  color: #a9a9a9;
+  cursor: not-allowed;
+}
+
+.page {
+  padding-bottom: 6rem;
+}
+
+/* Responsive height and font adjustments */
+
+/* Tablets og små laptops */
+@media (max-width: 1024px) {
+  .next-button {
+    font-size: 2.2rem;
+    padding: 0.45rem 5rem;
+    bottom: 1.8rem;
+  }
+
+  .page {
+    padding-bottom: 5.5rem;
+  }
+}
+
+/* Store mobiler og små nettbrett */
+@media (max-width: 768px) {
+  .next-button {
+    font-size: 1.8rem;
+    padding: 0.4rem 4rem;
+    bottom: 1.5rem;
+  }
+
+  .page {
+    padding-bottom: 5rem;
+  }
+}
+
+/* Små mobiler */
+@media (max-width: 480px) {
+  .next-button {
+    font-size: 1.5rem;
+    padding: 0.3rem 3rem;
+    bottom: 1.2rem;
+  }
+
+  .page {
+    padding-bottom: 4.5rem;
+  }
+}
+
+/* Landscape for mobiler */
+@media (max-width: 812px) and (orientation: landscape) {
+  .next-button {
+    font-size: 1.4rem;
+    padding: 0.25rem 3rem;
+    bottom: 1rem;
+  }
+
+  .page {
+    padding-bottom: 4rem;
+  }
+}
+
+/* Landscape for nettbrett */
+@media (min-width: 813px) and (max-width: 1024px) and (orientation: landscape) {
+  .next-button {
+    font-size: 1.6rem;
+    padding: 0.35rem 4rem;
+    bottom: 1.2rem;
+  }
+
+  .page {
+    padding-bottom: 4.5rem;
+  }
+}

@@ -1,0 +1,174 @@
+/* MealPackage.css */
+.spacer {
+  height: 5rem;
+}
+.meal-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.meal-package {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 25rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.meal-package-message {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+}
+.meal-package-price {
+  padding-right: 3rem;
+  display: flex;
+}
+.meal-package-price span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0a1d3f;
+}
+
+.meal-package-message span:first-child {
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 2px solid #0a1d3f;
+  padding-bottom: 2px;
+  color: #0a1d3f;
+}
+
+.info-icon {
+  display: flex;
+  align-items: center;
+  margin-left: 0.3rem;
+}
+
+.info-icon img {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.meal-info-dialog {
+  position: relative;
+  width: 40rem;
+  max-width: 100%;
+  margin-top: 12rem;
+  border: none;
+  border-radius: 16px;
+}
+
+.meal-info-dialog-content .close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.button-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.accept {
+  background-color: #0a1d3f;
+  border: none;
+  color: #97f7b1;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  max-width: 20rem;
+}
+
+.reject {
+  background-color: white;
+  color: #0a1d3f;
+  border: none;
+  box-shadow: inset 0 0 0 1px #0a1d3f; /* Indre kantlinje */
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  max-width: 20rem;
+}
+@media (max-width: 480px) {
+  .spacer {
+    height: 0;
+  }
+  .meal-info-dialog h3 {
+    font-size: 1.2rem;
+  }
+  .meal-info-dialog p {
+    font-size: 0.8rem;
+  }
+  .meal-info-dialog button {
+    font-size: 1.2rem;
+  }
+  .meal-package-message {
+    margin-left: 3rem;
+  }
+  .meal-package-message span:first-child {
+    font-size: 0.8rem;
+  }
+  .meal-package-price span {
+    font-size: 1rem;
+  }
+  .accept {
+    max-width: 10rem;
+    font-size: 0.6rem;
+  }
+  .reject {
+    max-width: 10rem;
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-height: 500px) and (max-width: 1028px) {
+  .meal-info-dialog {
+    margin-top: 8rem;
+  }
+  .meal-info-dialog h3 {
+    font-size: 1.2rem;
+  }
+  .meal-info-dialog p {
+    font-size: 0.8rem;
+  }
+  .meal-info-dialog button {
+    font-size: 1.2rem;
+  }
+  .meal-package-message span:first-child {
+    font-size: 0.8rem;
+  }
+  .meal-package-price span {
+    font-size: 1rem;
+  }
+  .accept {
+    max-width: 10rem;
+    font-size: 0.6rem;
+  }
+  .reject {
+    max-width: 10rem;
+    font-size: 0.6rem;
+  }
+}

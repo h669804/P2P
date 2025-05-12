@@ -1,0 +1,158 @@
+/* ChoosePayment.css */
+.payment-wrapper {
+  width: 80%;
+  max-width: 650px;
+  margin: 0 auto;
+  margin-top: calc(max(12dvh, 4rem) + 6rem);
+  padding: 0 20px 30px;
+  overflow: auto;
+}
+
+.payment-content {
+  background-color: transparent;
+  width: 100%;
+}
+
+.payment-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.payment-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #f2f2f2;
+}
+.payment-option.selected {
+  background-color: #d7d0be;
+}
+
+.payment-option.selected .radio-button-inner {
+  opacity: 1;
+}
+
+.payment-option-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-option-type {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 0.2rem;
+}
+
+.payment-option-amount {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.radio-button {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.radio-button-inner {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #0a1d3f;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.radio-button-inner.selected {
+  opacity: 1;
+}
+
+.terms-section {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.terms-row {
+  background-color: transparent;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.8rem;
+  cursor: pointer;
+}
+
+.terms-checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #bbb;
+  margin-right: 8px;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.terms-text {
+  font-size: 0.95rem;
+  text-decoration: underline;
+  color: #333;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .payment-wrapper {
+    margin-top: calc(max(12dvh, 4rem) + 3rem);
+    padding: 0 15px 25px;
+  }
+
+  .payment-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .payment-option-type {
+    font-size: 1rem;
+  }
+
+  .payment-option-amount {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-wrapper {
+    margin-top: calc(max(12dvh, 4rem) + 2rem);
+    padding: 0 10px 20px;
+  }
+
+  .payment-title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .payment-option {
+    padding: 1rem;
+  }
+}

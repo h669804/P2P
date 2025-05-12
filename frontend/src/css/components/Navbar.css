@@ -1,0 +1,127 @@
+/* Navbar.css */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: max(7%, 3.7rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  background-color: #0a1d3f;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.navbar-logo img {
+  height: auto;
+  width: auto;
+  max-width: 30%;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 1rem;
+  transition: none; /* Fjern overgang */
+  animation: none; /* Fjern animasjon */
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding-right: 1rem;
+  border-right: 1px solid #d9d6d4; /* Skill mellom lenkene */
+}
+.navbar-link.navbar-link:last-child {
+  border-right: none;
+}
+
+.navbar-link:hover {
+  color: #34d399;
+}
+
+.navbar-hamburger {
+  display: none; /* Skjul som standard */
+  flex-direction: column;
+  gap: 0.35rem;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  transform: translateY(-50%);
+  background-color: #0a1d3f;
+}
+
+.line {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-menu.open {
+  display: block; /* Vis menyen når åpnet */
+}
+
+/* Responsiv tilpasning */
+@media (max-width: 1200px) {
+  .navbar-hamburger {
+    display: flex;
+  }
+  .navbar-menu {
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 30%;
+    background-color: #e5e5e5;
+    border-radius: 0 0 16px 16px;
+    gap: 1rem;
+    padding: 1rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Skyggeeffekt */
+    flex-direction: column; /* Stable Hamburger i kolonne */
+  }
+  .navbar-menu.open {
+    visibility: visible;
+    display: flex;
+    flex-direction: column; /* Stable navbar-link elementene i kolonne */
+    gap: 1rem;
+    transition: none; /* Fjern overgang */
+    animation: none; /* Fjern animasjon */
+  }
+
+  .navbar-link {
+    padding: 0.75rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid #d9d6d4; /* Skill mellom lenkene */
+  }
+  /* Animer hamburger til kryss */
+  .navbar-hamburger.open .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: white;
+  }
+  .navbar-hamburger.open .line:nth-child(2) {
+    opacity: 0; /* Skjul midterste linje */
+  }
+  .navbar-hamburger.open .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: white;
+  }
+  .navbar-hamburger.open {
+    transition: background-color 0.3s ease-in-out;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navbar-link:last-child {
+    border-bottom: none; /* Fjern linje under siste element */
+  }
+}

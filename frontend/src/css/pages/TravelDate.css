@@ -1,0 +1,113 @@
+/* TravelDate.css */
+.custom-datepicker-wrapper {
+  width: 20rem;
+  max-width: 80%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.custom-datepicker {
+  min-height: 3.2rem;
+  padding-left: 1rem;
+  font-size: max(1.6vw, 1.2rem);
+  font-weight: bold;
+  font-family: inherit;
+  color: #6b7280;
+  background-color: #efeff2;
+  border: none;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+  box-sizing: border-box;
+  line-height: 1.2;
+  margin: 0;
+  appearance: none;
+  cursor: pointer;
+}
+.react-datepicker__view-calendar-icon svg {
+  padding-left: 1rem;
+  position: relative !important;
+}
+
+.react-datepicker__input-container input:hover {
+  background-color: #efeff2 !important;
+}
+
+.custom-datepicker:hover {
+  background-color: #d7d9de;
+}
+
+.custom-datepicker:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.react-datepicker__input-container {
+  position: relative;
+  width: 100%;
+}
+.react-datepicker__month-container {
+  width: 100%;
+}
+
+.react-datepicker__calendar-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #6b7280;
+  height: 1.1rem;
+  width: 1.1rem;
+}
+
+.react-datepicker {
+  margin-top: 0.2rem;
+  width: 20rem;
+  background-color: #efeff2;
+  border: none;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.react-datepicker__header {
+  background-color: #efeff2;
+  border-bottom: 1px solid #6b7280;
+  border-top: 1px solid #6b7280;
+  border-radius: 0 !important;
+}
+
+.react-datepicker__month {
+  margin: 0;
+  background-color: #efeff2;
+}
+
+.react-datepicker__day--selected {
+  background-color: #d7d0be;
+  color: #000000;
+}
+
+@media (max-width: 768px) {
+  @media (max-width: 480px) {
+    .custom-datepicker-wrapper {
+      width: 14rem;
+      margin-top: 0.25rem !important;
+      margin-bottom: 5rem !important;
+    }
+
+    .react-datepicker {
+      width: 14rem;
+    }
+  }
+}

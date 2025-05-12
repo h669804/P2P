@@ -1,0 +1,174 @@
+.custom-passenger-dialog {
+  position: relative;
+  width: 20rem;
+  max-width: 100%;
+}
+
+.custom-passenger-dialog-toggle {
+  min-height: 3.2rem;
+  padding: 0 1.2rem;
+  font-size: max(1.6vw, 1.2rem);
+  font-weight: bold;
+  color: #6b7280;
+  background-color: #efeff2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.custom-passenger-dialog-toggle p,
+.passenger-summary p {
+  margin: 0;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.custom-passenger-dialog-open {
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  border: none;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: white;
+  font-size: 1.2rem;
+  max-width: 90vw;
+}
+
+.passenger-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 1.2rem;
+}
+
+.passenger-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.passenger-controls button {
+  background-color: #efeff2;
+  border: none;
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.dialog-buttons button {
+  font-size: 1.1rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 2rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Responsiv tilpasning for mobil */
+@media (max-width: 768px) {
+  .custom-passenger-dialog {
+    width: 16rem;
+    max-width: 90%;
+  }
+  .custom-passenger-dialog-toggle {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .custom-passenger-dialog-open {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .passenger-row {
+    font-size: 1rem;
+  }
+
+  .passenger-controls button {
+    width: 1.8rem;
+    height: 1.8rem;
+    font-size: 1rem;
+  }
+
+  .dialog-buttons button {
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-passenger-dialog {
+    width: 14rem;
+    margin-top: 0.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .custom-passenger-dialog-toggle {
+    padding: 0.5rem 0.8rem;
+  }
+  .custom-passenger-dialog-toggle p {
+    font-size: 0.9rem;
+  }
+
+  .custom-passenger-dialog-open {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .passenger-controls button {
+    width: 1.6rem;
+    height: 1.6rem;
+    font-size: 0.95rem;
+  }
+
+  .dialog-buttons button {
+    font-size: 0.95rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+/* Forbedret plassbruk i mobil landscape */
+@media (max-height: 500px) and (max-width: 1024px) {
+  .custom-passenger-dialog {
+    margin-top: 0;
+  }
+  .custom-passenger-dialog-open {
+    max-height: 85vh; /* Unngå at innhold går utenfor */
+    padding: 1rem;
+    font-size: 1rem;
+    margin: auto; /* Sentrering */
+  }
+
+  .custom-passenger-dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .passenger-row {
+    font-size: 0.95rem;
+  }
+
+  .passenger-controls button {
+    width: 1.8rem;
+    height: 1.8rem;
+    font-size: 1rem;
+  }
+}

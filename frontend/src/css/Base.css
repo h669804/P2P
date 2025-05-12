@@ -1,0 +1,71 @@
+/* Base.css */
+:root {
+  --navbar-height: 3.7rem;
+  --progressbar-offset: 4rem;
+  --content-top-space: 1rem;
+}
+
+button {
+  border: none;
+}
+
+.page {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #ffffff;
+  font-size: 2rem;
+  color: #1e3a8a;
+}
+
+.page-title-wrapper {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.page-title {
+  font-size: clamp(1.5rem, 2.5vw + 1rem, 2.8rem);
+  font-weight: 600;
+  color: #0a1d3f;
+  margin: 0 auto;
+  line-height: 1.2;
+  max-width: 90%;
+}
+.page-subtitle {
+  font-size: clamp(1rem, 2vw + 0.5rem, 1.7rem);
+  color: #0a1d3f;
+  margin: 0 auto;
+  line-height: 1.2;
+  max-width: 90%;
+}
+
+@media (max-height: 500px) {
+  .page-title-wrapper {
+    margin-bottom: 1.5rem;
+  }
+  .page-title {
+    font-size: 1.4rem;
+    margin-bottom: 0;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .page-title-wrapper {
+    margin-bottom: 3rem;
+  }
+  .page-title {
+    font-size: 1.4rem;
+    margin-bottom: 0;
+  }
+  .page-subtitle {
+    font-size: 1.2rem;
+  }
+}

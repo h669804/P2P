@@ -1,0 +1,69 @@
+.sus-scheme {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 60vh;
+  max-width: 90vw;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.sus-question {
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.sus-question p {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #000000;
+  word-break: break-word;
+}
+
+.sus-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.sus-options label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #000000;
+}
+
+.sus-options input[type='radio'] {
+  margin-bottom: 0.25rem;
+}
+
+button[type='submit'] {
+  background-color: #0a1d3f;
+  border: none;
+  color: #97f7b1;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  max-width: 20rem;
+  margin: 2rem auto 0;
+  display: block;
+}
+
+@media (max-width: 500px) {
+  .sus-options label {
+    font-size: 0.8rem;
+  }
+
+  .sus-options {
+    gap: 0.5rem;
+  }
+}

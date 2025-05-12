@@ -1,0 +1,194 @@
+/* RouteSelectionDialog.css */
+.route-option.unavailable {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.custom-route-dialog {
+  position: relative;
+  width: 20rem;
+  max-width: 100%;
+  align-items: center;
+}
+
+.custom-route-dialog-toggle {
+  min-height: 3.2rem;
+  padding: 0 1.2rem;
+  font-size: max(1.6vw, 1.2rem);
+  font-weight: bold;
+  color: #6b7280;
+  background-color: #efeff2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0.5rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.2;
+}
+.custom-route-dialog-toggle p {
+  margin: 0;
+}
+
+.custom-route-dialog-open {
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  border: none;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: white;
+  font-size: 1.2rem;
+  max-width: 90vw;
+}
+
+.custom-route-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cabin-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cabin-options-list .cabin-option-wrapper:last-child {
+  border: none;
+}
+
+.route-option {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.route-option.selected {
+  border: 2px solid #0a1d3f;
+  background-color: #f0f9ff;
+}
+
+.loading-state,
+.error-state,
+.no-routes {
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  color: #6b7280;
+}
+
+.error-state {
+  color: #ef4444;
+  background-color: #fee2e2;
+}
+
+.route-header {
+  margin-bottom: 8px;
+}
+
+.route-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  text-align: left;
+}
+
+.ship-name {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.route-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.route-times {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.time-item {
+  display: flex;
+  gap: 6px;
+}
+
+.time-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.time-value {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.route-price {
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.route-image {
+  width: 120px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.route-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.custom-route-dialog-content .cabin-option-wrapper:last-of-type {
+  border: none !important;
+}
+
+@media (max-width: 768px) {
+  .custom-route-dialog {
+    width: 16rem;
+    max-width: 90%;
+  }
+  .custom-route-dialog-toggle {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+  }
+  .custom-route-dialog-open {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  .route-option {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .custom-route-dialog {
+    width: 14rem;
+    margin-top: 0;
+    margin-bottom: 4rem;
+  }
+  .custom-route-dialog-toggle {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-height: 500px) and (max-width: 1024px) {
+  .custom-route-dialog-toggle {
+    margin-top: 0.25rem;
+    margin-bottom: 1.25rem;
+  }
+}

@@ -1,0 +1,75 @@
+/* BackButton.css */
+.back-button {
+  position: fixed;
+  display: flex;
+  top: max(calc(10dvh + 4rem), 6rem); /* Positioned below the progress bar */
+  left: 1.2rem;
+  background-color: transparent;
+  color: #1f2937;
+  padding: clamp(0.5rem, 1.5vmin, 0.75rem);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: none;
+  z-index: 10;
+  font-size: clamp(0.9375rem, 4vmin, 1.25rem);
+  font-weight: bold;
+  line-height: 1;
+  min-height: 44px;
+  min-width: 44px;
+  width: auto;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.arrow {
+  font-size: inherit;
+  font-weight: bold;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .back-button {
+    left: clamp(0.5rem, 2vw, 1rem);
+    padding: clamp(0.4rem, 1.2vmin, 0.6rem);
+    font-size: clamp(0.9375rem, 3vmin, 1rem);
+  }
+}
+
+@media (max-width: 400px) {
+  .back-button {
+    padding: clamp(0.3rem, 1vmin, 0.5rem);
+    font-size: clamp(0.9375rem, 2.5vmin, 0.9375rem);
+  }
+}
+
+@media (max-height: 500px) {
+  .back-button {
+    position: fixed;
+    left: 2.5rem;
+    top: 4rem;
+    transform: none;
+    margin-top: 0;
+    z-index: 10;
+    padding: 0.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .back-button span:not(.arrow) {
+    display: none;
+  }
+
+  .back-button .arrow {
+    font-size: 1.2rem;
+  }
+}

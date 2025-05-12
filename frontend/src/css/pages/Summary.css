@@ -1,0 +1,150 @@
+/* Summary.css */
+.compact-block {
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.receipt-section {
+  width: 80%;
+  max-width: 60rem;
+  margin: calc(max(12dvh, 4rem) + 6rem) auto 3rem;
+  padding: 0 1.5rem;
+  overflow-y: auto;
+}
+
+.receipt-title {
+  position: fixed;
+  top: 14rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0.5rem;
+  color: #0a1d3f;
+}
+
+.receipt-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.2rem;
+}
+
+.route-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  border-bottom: 1px solid #eee;
+}
+.port-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0a1d3f;
+}
+.port-date {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.2rem;
+}
+.arrow {
+  margin: 0 0.8rem;
+  font-size: 1.3rem;
+  color: #0a1d3f;
+}
+
+.two-column-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.column {
+  flex: 1;
+  min-width: 250px;
+}
+
+.detail-heading {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #0a1d3f;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid #eee;
+}
+.detail-row,
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+  font-size: 0.8rem;
+}
+.detail-label {
+  color: #666;
+}
+.detail-value {
+  font-weight: 600;
+  color: #1f2937;
+  text-align: right;
+}
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-top: 1px solid #eee;
+  color: #1f2937;
+}
+
+.passenger-details-block {
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+.passenger-index {
+  padding-left: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #1f2937;
+}
+.passenger-name,
+.passenger-birth,
+.passenger-email,
+.passenger-phone {
+  padding-left: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+@media (max-height: 1200px) and (max-width: 900px) {
+  .receipt-title {
+    top: 18rem;
+  }
+  .receipt-section {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-height: 950px) and (max-width: 450px) {
+  .receipt-section {
+    margin-top: calc(max(12dvh, 4rem) + 9rem);
+    padding: 0 12px 30px;
+    max-height: 32rem;
+  }
+  .receipt-title {
+    top: 12rem;
+  }
+  .two-column-layout {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-height: 500px) and (max-width: 1024px) {
+  .receipt-title {
+    top: 8rem;
+  }
+  .receipt-section {
+    margin-top: 10rem;
+  }
+}

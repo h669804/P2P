@@ -1,0 +1,17 @@
+# MacOS systemfil
+.DS_Store
+
+# Kompilert kode
+bin/
+obj/
+routes.db
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
+# SQLite database backup files
+*.db.backup
+
+# Documentation
+_site/

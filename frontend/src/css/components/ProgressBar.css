@@ -1,0 +1,188 @@
+/* ProgressBar.css */
+.progress-container {
+  position: fixed;
+  display: flex;
+  top: max(11dvh, 4rem);
+  left: clamp(1rem, 2vw, 2rem);
+  right: clamp(1rem, 2vw, 2rem);
+  gap: 0;
+  overflow-x: visible;
+  z-index: 9;
+  align-items: center;
+}
+
+.progress-container.vertical {
+  flex-direction: column;
+  left: clamp(0.5rem, 1vw, 1rem);
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto;
+  max-height: 90vh;
+  gap: 0.5rem;
+  width: auto;
+}
+
+.progress-button-wrapper {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.progress-button-wrapper.active .step-label,
+.progress-button-wrapper.completed .step-label {
+  color: #0a1d3f;
+}
+
+.progress-button-wrapper.active,
+.progress-button-wrapper.completed {
+  background: #0a1d3f;
+}
+
+.progress-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+  transform: translateX(0.1rem);
+  object-position: center;
+  filter: none;
+}
+
+.progress-button-wrapper.completed .progress-icon,
+.progress-button-wrapper.active .progress-icon {
+  filter: brightness(0) invert(1);
+}
+
+.progress-line {
+  flex-grow: 1;
+  height: 2px;
+  background: #e5e7eb;
+  align-self: center;
+  min-width: 1.5rem;
+}
+
+.progress-container.vertical .progress-line {
+  width: 2px;
+  height: 1rem;
+  min-width: 0;
+  min-height: 1rem;
+}
+
+.progress-line.active,
+.progress-line.completed {
+  background: #0a1d3f;
+}
+
+.progress-container.mobile-view {
+  justify-content: space-between;
+}
+
+.progress-container.mobile-view.vertical {
+  justify-content: flex-start;
+}
+
+/* Media queries */
+@media (max-width: 900px) {
+  .progress-container {
+    top: max(12dvh, 4rem);
+    gap: 0.5rem;
+  }
+
+  .progress-container.vertical {
+    top: 50%;
+  }
+
+  .progress-button-wrapper {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .progress-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .progress-line {
+    min-width: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .progress-container {
+    top: max(12dvh, 4rem);
+  }
+
+  .progress-container.vertical {
+    top: 50%;
+  }
+
+  .progress-container.mobile-view .progress-line {
+    height: 2px;
+    display: block;
+  }
+
+  .progress-container.mobile-view.vertical .progress-line {
+    width: 2px;
+    height: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .progress-container {
+    gap: 0.3rem;
+  }
+
+  .progress-button-wrapper {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .progress-icon {
+    width: 0.85rem;
+    height: 0.85rem;
+  }
+}
+
+.progress-container.vertical {
+  flex-direction: column;
+  left: auto;
+  right: clamp(0.5rem, 1vw, 1rem);
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto;
+  max-height: 100vh;
+  gap: 0.5rem;
+  width: auto;
+}
+
+@media (max-height: 500px) {
+  .progress-container {
+    flex-direction: column;
+    left: auto;
+    right: clamp(0.5rem, 1vw, 1rem);
+    top: 50%;
+    transform: translateY(-50%);
+    padding-top: 50px;
+    padding-right: 10px;
+    height: auto;
+    max-height: 90vh;
+  }
+
+  .progress-line {
+    width: 2px;
+    height: 1rem;
+    min-width: 0;
+    min-height: 0.5rem;
+  }
+}
