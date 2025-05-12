@@ -9,7 +9,7 @@ const config: Config = {
   },
   moduleNameMapper: {
     "\\.(css|scss)$": "identity-obj-proxy",
-    "^@/config/env$": "<rootDir>/src/config/env.jest.ts",
+    "^@/config/env$": "<rootDir>/src/config/env-jest.ts",
   },
 };
 

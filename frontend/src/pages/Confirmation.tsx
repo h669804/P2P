@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar";
 import "../css/pages/Confirmation.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { baseUrl } from "../config/env";
+import { baseUrl } from "../config/env-vite";
 
 // ─────────────────────────────────────────────
 // File: Confirmation.tsx

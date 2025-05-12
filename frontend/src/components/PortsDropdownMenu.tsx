@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../css/components/DropdownMenu.css";
 import { Port } from "../interfaces/IPort";
-import { baseUrl } from "../config/env";
+import { baseUrl } from "../config/env-vite";
 
 // ─────────────────────────────────────────────
 // File: PortsDropdownMenu.tsx

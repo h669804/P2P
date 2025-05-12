@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ReusableDialog from "./ReusableDialog";
-import { baseUrl } from "../config/env";
+import { baseUrl } from "../config/env-vite";
 
 // ─────────────────────────────────────────────
 // File: CabinSelectionDialog.tsx
