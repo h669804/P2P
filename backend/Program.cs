@@ -143,16 +143,13 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-if (app.Environment.IsDevelopment())
-{
     // Enable Swagger in development mode
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
-        c.RoutePrefix = string.Empty; // Swagger at the root (e.g., http://localhost:5000/)
+        c.RoutePrefix = string.Empty;
     });
-}
 
 app.UseCors("AllowAll");
 app.UseHttpsRedirection();
