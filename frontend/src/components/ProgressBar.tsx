@@ -12,6 +12,7 @@ import "../css/components/ProgressBar.css";
 type ProgressBarProps = {
   activeStep: number;
 };
+
 const allSteps = [
   "Departure",
   "Destination",
@@ -26,30 +27,21 @@ const allSteps = [
   "Payment",
 ];
 
-// Mobile condensed steps - key milestone steps to show on mobile
 const mobileSteps = ["Departure", "Passengers", "Cabin", "Summary", "Payment"];
 
-// Helper function to map current step index to mobile step index
-const mapToMobileIndex = (currentIndex: number) => {
-  // Find the nearest mobile step that is less than or equal to current step
-  const currentStep = allSteps[currentIndex];
-
-  // If the current step is in mobileSteps, return its index
-  const mobileIndex = mobileSteps.indexOf(currentStep);
-  if (mobileIndex !== -1) return mobileIndex;
-
-  // Otherwise find the nearest mobile step that comes before current step
-  let nearestIndex = 0;
-  for (let i = 0; i < mobileSteps.length; i++) {
-    const mobileStepIndex = allSteps.indexOf(mobileSteps[i]);
-    if (mobileStepIndex <= currentIndex) {
-      nearestIndex = i;
-    } else {
-      break;
-    }
-  }
-
-  return nearestIndex;
+// Eksplicit mapping mellom detaljerte steg og mobilvisningens hovedtrinn
+const stepToMobileGroup: Record<string, string> = {
+  Departure: "Departure",
+  Destination: "Departure",
+  Passengers: "Passengers",
+  "Travel Date": "Passengers",
+  "Choose Route": "Cabin",
+  Cabin: "Cabin",
+  "Meal Package": "Cabin",
+  "Passenger Details": "Summary",
+  Summary: "Summary",
+  "Payment Option": "Payment",
+  Payment: "Payment",
 };
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ activeStep }) => {
@@ -91,59 +83,57 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ activeStep }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const useVerticalLayout = isShortScreen;
+
+  const stepsToRender =
+    isVerySmallScreen || useVerticalLayout ? mobileSteps : allSteps;
+
+  // Kartlegg nåværende steg til riktig steg i mobilvisning
+  const currentStepName = allSteps[activeStep];
+  const mappedMobileStep = stepToMobileGroup[currentStepName];
+  const displayActiveStep =
+    isVerySmallScreen || useVerticalLayout
+      ? mobileSteps.indexOf(mappedMobileStep)
+      : activeStep;
+
   const handleStepClick = (index: number, isMobile = false) => {
-    // Get the appropriate step index to navigate to
     const targetIndex = isMobile ? allSteps.indexOf(mobileSteps[index]) : index;
 
-    // Only allow navigation to completed or current steps
     if (targetIndex <= activeStep) {
-      // Convert step name to route (e.g., "Travel Date" → "/travel-date")
-      const route = `/${allSteps[targetIndex].replace(/\s+/g, "").toLowerCase()}`;
+      const route = `/${allSteps[targetIndex]
+        .replace(/\s+/g, "")
+        .toLowerCase()}`;
       navigate(route);
     }
   };
 
-  // Determine if we should use vertical layout based on screen height
-  const useVerticalLayout = isShortScreen;
-
-  // Determine which steps array to use based on screen size or layout
-  // Always use mobile steps when in vertical layout
-  const stepsToRender =
-    isVerySmallScreen || useVerticalLayout ? mobileSteps : allSteps;
-
-  // Map the active step to the correct index in the condensed array if on mobile or vertical layout
-  const displayActiveStep =
-    isVerySmallScreen || useVerticalLayout
-      ? mapToMobileIndex(activeStep)
-      : activeStep;
-
   return (
     <div
       className={`progress-container 
-                    ${isVerySmallScreen ? "mobile-view" : ""} 
-                    ${useVerticalLayout ? "vertical" : ""}`}
+        ${isVerySmallScreen ? "mobile-view" : ""} 
+        ${useVerticalLayout ? "vertical" : ""}`}
     >
       {stepsToRender.map((step, index) => {
-        const stepInFullArray = allSteps.indexOf(step);
-        const isCompleted = isVerySmallScreen
-          ? stepInFullArray < activeStep
-          : index < activeStep;
+        const fullStepIndex = allSteps.indexOf(step);
+        const isCompleted =
+          isVerySmallScreen || useVerticalLayout
+            ? allSteps.indexOf(stepToMobileGroup[step]) < activeStep
+            : index < activeStep;
 
-        const isActive = isVerySmallScreen
-          ? stepInFullArray === activeStep ||
-            (index === displayActiveStep && stepInFullArray > activeStep)
-          : index === activeStep;
+        const isActive = index === displayActiveStep;
 
         const stepStatus = isActive ? "active" : isCompleted ? "completed" : "";
 
         return (
-          <Fragment key={allSteps.indexOf(step)}>
+          <Fragment key={step}>
             <button
               className={`progress-button-wrapper ${stepStatus}`}
               onClick={() => handleStepClick(index, isVerySmallScreen)}
             >
               <img
-                src={`assets/progress-bar/${step.replace(/\s+/g, "")}${isCompleted ? "-completed" : ""}.svg`}
+                src={`assets/progress-bar/${step.replace(/\s+/g, "")}${
+                  isCompleted ? "-completed" : ""
+                }.svg`}
                 className="progress-icon"
                 alt={step}
               />
