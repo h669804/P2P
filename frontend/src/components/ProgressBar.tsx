@@ -35,12 +35,12 @@ const stepToMobileGroup: Record<string, string> = {
   Destination: "Departure",
   Passengers: "Passengers",
   "Travel Date": "Passengers",
-  "Choose Route": "Cabin",
+  "Choose Route": "Passengers",
   Cabin: "Cabin",
   "Meal Package": "Cabin",
-  "Passenger Details": "Summary",
+  "Passenger Details": "Cabin",
   Summary: "Summary",
-  "Payment Option": "Payment",
+  "Payment Option": "Summary",
   Payment: "Payment",
 };
 

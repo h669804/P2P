@@ -86,27 +86,30 @@ export default function Confirmation() {
               </p>
               <div className="sus-options">
                 {Object.entries(options).map(([value, label]) => (
-                  <label key={value}>
-                    <input
-                      type="radio"
-                      name={`q${i}`}
-                      value={value}
-                      checked={responses[i] === Number(value)}
-                      onChange={() => handleChange(i, Number(value))}
-                      required
-                    />
+                  <button
+                    key={value}
+                    type="button"
+                    className={responses[i] === Number(value) ? "selected" : ""}
+                    onClick={() => handleChange(i, Number(value))}
+                  >
                     {value} <span>({label})</span>
-                  </label>
+                  </button>
                 ))}
               </div>
             </div>
           ))}
           {submitted ? (
-            <button type="button" onClick={() => navigate("/")}>
-              Back to home
+            <button
+              className="submit-button"
+              type="button"
+              onClick={() => navigate("/")}
+            >
+              Back to homepage
             </button>
           ) : (
-            <button type="submit">Submit Feedback</button>
+            <button className="submit-button" type="submit">
+              Submit Feedback
+            </button>
           )}
         </form>
       </div>

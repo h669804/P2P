@@ -1,10 +1,10 @@
 .sus-scheme {
+  margin-top: 2rem;
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 60vh;
   max-width: 90vw;
-  width: 100%;
-  margin: 0 auto;
+  width: 50%;
   box-sizing: border-box;
 }
 
@@ -25,24 +25,33 @@
 
 .sus-options {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+  flex-direction: row;
+  gap: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  margin: 0 auto;
 }
 
-.sus-options label {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 0.9rem;
-  color: #000000;
+.sus-options button {
+  background-color: #0a1d3f;
+  color: #97f7b1;
+  border: 1px solid #97f7b1;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease;
 }
 
-.sus-options input[type='radio'] {
-  margin-bottom: 0.25rem;
+.sus-options button.selected {
+  background-color: #97f7b1;
+  color: #0a1d3f;
+  border: 1px solid #0a1d3f;
 }
 
-button[type='submit'] {
+.submit-button {
   background-color: #0a1d3f;
   border: none;
   color: #97f7b1;
@@ -58,12 +67,21 @@ button[type='submit'] {
   display: block;
 }
 
-@media (max-width: 500px) {
-  .sus-options label {
-    font-size: 0.8rem;
+@media (max-width: 1100px) {
+  .sus-scheme {
+    width: 90vw;
   }
 
   .sus-options {
-    gap: 0.5rem;
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .sus-options button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    min-width: auto;
+    white-space: nowrap; /* Prevent text wrapping */
   }
 }
