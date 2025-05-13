@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import BackButton from '../components/BackButton';
-import Navbar from '../components/Navbar';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import '../css/pages/TravelDate.css';
-import NextButton from '../components/NextButton';
-import ProgressBar from '../components/ProgressBar';
+import { useEffect, useState } from "react";
+import BackButton from "../components/BackButton";
+import Navbar from "../components/Navbar";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "../css/pages/TravelDate.css";
+import NextButton from "../components/NextButton";
+import ProgressBar from "../components/ProgressBar";
 
 // ─────────────────────────────────────────────
 // File: TravelDate.tsx
@@ -20,21 +20,21 @@ export default function () {
   const [isDateSelected, setIsDateSelected] = useState(true);
 
   useEffect(() => {
-    const storedDate = sessionStorage.getItem('selectedDate');
+    const storedDate = sessionStorage.getItem("selectedDate");
     if (storedDate) {
       // Parse the string to a timestamp and convert to Date object
       const parsedDate = new Date(Date.parse(storedDate));
       setSelectedDate(parsedDate);
     } else {
       // Handle if passenger wants to travel "today"
-      sessionStorage.setItem('selectedDate', selectedDate.toISOString());
+      sessionStorage.setItem("selectedDate", selectedDate.toISOString());
     }
   }, []);
 
   const handleSelectedDate = (date: Date | null) => {
     if (date) {
       setSelectedDate(date); // Update state først
-      sessionStorage.setItem('selectedDate', date.toISOString()); // Lagre ny dato
+      sessionStorage.setItem("selectedDate", date.toISOString()); // Lagre ny dato
       setIsDateSelected(true);
     }
   };
@@ -52,12 +52,13 @@ export default function () {
           <DatePicker
             selected={selectedDate}
             onChange={handleSelectedDate}
-            open={isOpen} // gjør den kontrollert
-            onClickOutside={() => setIsOpen(false)} // når bruker klikker utenfor
-            onSelect={() => setIsOpen(false)} // lukker når dato velges
-            onInputClick={() => setIsOpen((prev) => !prev)} // toggle når man klikker på feltet
-            toggleCalendarOnIconClick={false} // viktig – du håndterer åpning selv
+            open={isOpen}
+            onClickOutside={() => setIsOpen(false)}
+            onSelect={() => setIsOpen(false)} //
+            onInputClick={() => setIsOpen((prev) => !prev)}
+            toggleCalendarOnIconClick={false}
             className="custom-datepicker"
+            readOnly
           />
         </div>
         <NextButton route="/chooseroute" isEnabled={isDateSelected} />
