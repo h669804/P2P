@@ -114,7 +114,6 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ activeStep }) => {
         ${useVerticalLayout ? "vertical" : ""}`}
     >
       {stepsToRender.map((step, index) => {
-        const fullStepIndex = allSteps.indexOf(step);
         const isCompleted =
           isVerySmallScreen || useVerticalLayout
             ? allSteps.indexOf(stepToMobileGroup[step]) < activeStep
