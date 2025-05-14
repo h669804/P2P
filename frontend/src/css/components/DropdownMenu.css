@@ -10,7 +10,7 @@
   padding: 0 1.2rem;
   font-size: max(1.6vw, 1.2rem);
   font-weight: bold;
-  color: #6b7280;
+  color: #333333;
   background-color: #efeff2;
   cursor: pointer;
   display: flex;
@@ -70,7 +70,7 @@
 .custom-dropdown-item {
   background-color: #efeff2;
   font-size: max(1.4vw, 1.2rem);
-  color: #6b7280;
+  color: #333333;
   padding: 0.8rem 1rem;
   cursor: pointer;
   text-align: left;

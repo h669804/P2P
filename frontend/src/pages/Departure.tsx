@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import Navbar from '../components/Navbar';
-import BackButton from '../components/BackButton';
-import PortsDropdownMenu from '../components/PortsDropdownMenu';
-import NextButton from '../components/NextButton';
-import ProgressBar from '../components/ProgressBar';
+import { useState } from "react";
+import { Port } from "../interfaces/IPort";
+import Navbar from "../components/Navbar";
+import BackButton from "../components/BackButton";
+import PortsDropdownMenu from "../components/PortsDropdownMenu";
+import NextButton from "../components/NextButton";
+import ProgressBar from "../components/ProgressBar";
 
 // ─────────────────────────────────────────────
 // File: Departure.tsx
@@ -14,10 +15,17 @@ import ProgressBar from '../components/ProgressBar';
 
 export default function Departure() {
   const [isPortSelected, setIsPortSelected] = useState(false);
+  const [ports, setPorts] = useState<Port[]>([]);
 
   const handlePortSelection = (portName: string) => {
-    setIsPortSelected(portName !== 'Please select a port');
-    sessionStorage.setItem('departurePort', portName);
+    const isValid = ports.some((port) => port.name === portName);
+    setIsPortSelected(isValid);
+
+    if (isValid) {
+      sessionStorage.setItem("departurePort", portName);
+    } else {
+      sessionStorage.removeItem("departurePort");
+    }
   };
   return (
     <>
@@ -30,7 +38,11 @@ export default function Departure() {
           <h1 className="page-title">Where are you travelling from?</h1>
         </div>
 
-        <PortsDropdownMenu onSelectPort={handlePortSelection} parent="departure" />
+        <PortsDropdownMenu
+          onSelectPort={handlePortSelection}
+          onPortsLoaded={setPorts}
+          parent="departure"
+        />
         <NextButton route="/destination" isEnabled={isPortSelected} />
       </div>
     </>

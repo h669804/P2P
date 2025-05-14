@@ -12,47 +12,56 @@ import { baseUrl } from "@config/env";
 
 interface DropdownMenuProps {
   readonly onSelectPort: (portName: string) => void; // Callback-funksjon som tar inn portens navn
+  readonly onPortsLoaded?: (ports: Port[]) => void;
   readonly parent: string;
 }
 
 export default function DropdownMenu({
   onSelectPort,
+  onPortsLoaded,
   parent,
 }: DropdownMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPort, setSelectedPort] = useState("");
   const [selectMessage] = useState("Select port...");
   const [borderRadius, setBorderRadius] = useState("16px");
-  const [ports, setPorts] = useState<Port[]>([]); // Store fetched ports
+  const [ports, setPorts] = useState<Port[]>([]);
   const [errorMessage, setErrorMessage] = useState("Loading ports..");
   const [disabledPort, setDisabledPort] = useState<string | null>(null); // Her lagrer vi den deaktiverte havnen
 
-  // Fetch ports from API
   useEffect(() => {
-    const storedPorts = sessionStorage.getItem("ports");
+    const storedPorts = sessionStorage.getItem("storedPorts");
 
     if (storedPorts) {
-      setPorts(JSON.parse(storedPorts));
+      const parsedPorts = JSON.parse(storedPorts);
+      setPorts(parsedPorts);
+      if (onPortsLoaded) {
+        onPortsLoaded(parsedPorts); // callback med cached ports
+      }
     }
-    console.log("baseUrl: ", baseUrl);
+
     fetch(`${baseUrl}/api/Ports`)
       .then((response) => response.json())
       .then((data: Port[]) => {
         setPorts(data);
         sessionStorage.setItem("storedPorts", JSON.stringify(data));
+
+        if (onPortsLoaded) {
+          onPortsLoaded(data); // callback med oppdaterte ports
+        }
       })
       .catch((error) => {
         setErrorMessage("Error fetching ports, try again later.");
         console.error("Error fetching ports:", error);
       });
 
+    // Initialiser valgt port basert på parent-type
     if (parent === "destination") {
-      // Departureport må være valgt
       const storedDeparturePort = sessionStorage.getItem("departurePort");
       if (storedDeparturePort) {
-        setDisabledPort(storedDeparturePort); // Sett departurePort som disabled
+        setDisabledPort(storedDeparturePort);
       }
-      // Hvis man tidligere har valgt port.
+
       const destinationPort = sessionStorage.getItem("destinationPort");
       if (destinationPort) {
         if (destinationPort !== storedDeparturePort) {
@@ -64,6 +73,7 @@ export default function DropdownMenu({
         }
       }
     }
+
     if (parent === "departure") {
       const departurePort = sessionStorage.getItem("departurePort");
       if (departurePort) {
